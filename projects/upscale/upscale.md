@@ -25,25 +25,26 @@ If the HX711 module you have does not include an onboard regulator/level shifter
 Many HX711 breakout boards do run fine at 3.3 V and will thus keep the DT and SCK lines safe at 3.3 V.
 If your HX711 board truly requires 5 V (check documentation or measure it), then use your 5 → 3.3 V level shifters on DT and SCK to ensure the Raspberry Pi does not see 5 V logic.
 
-
+```
               WIRING SUMMARY (LOAD CELL + HX711 + RASPBERRY PI)
 ┌───────────────────────────────────────────────────────────────────────────────┐
-│ LOAD CELL (4 wires) → HX711 AMPLIFIER                                       │
+│ LOAD CELL (4 wires) → HX711 AMPLIFIER                                         │
 ├───────────────────────────────────────────────────────────────────────────────┤
-│  Load Cell Red   →  HX711 E+                                                │
-│  Load Cell Black →  HX711 E–                                                │
-│  Load Cell White →  HX711 A–                                                │
-│  Load Cell Green →  HX711 A+                                                │
+│  Load Cell Red   →  HX711 E+                                                  │
+│  Load Cell Black →  HX711 E–                                                  │
+│  Load Cell White →  HX711 A–                                                  │
+│  Load Cell Green →  HX711 A+                                                  │
 └───────────────────────────────────────────────────────────────────────────────┘
 
 ┌───────────────────────────────────────────────────────────────────────────────┐
-│ HX711 AMPLIFIER → RASPBERRY PI (B+ model)                                    │
+│ HX711 AMPLIFIER → RASPBERRY PI (B+ model)                                     │
 ├───────────────────────────────────────────────────────────────────────────────┤
-│  HX711 GND  →  Pi GND        (Black wire)                                    │
-│  HX711 DT   →  Pi GPIO17     (Pin 11)  (White wire)                          │
-│  HX711 SCK  →  Pi GPIO27     (Pin 13)  (Orange wire)                         │
+│  HX711 GND  →  Pi GND        (Black wire)                                     │
+│  HX711 DT   →  Pi GPIO17     (Pin 11)  (White wire)                           │
+│  HX711 SCK  →  Pi GPIO27     (Pin 13)  (Orange wire)                          │
 │  HX711 VCC  →  Pi 3.3 V or 5 V (commonly 3.3 V)  (Red wire)                   │
 └───────────────────────────────────────────────────────────────────────────────┘
+```
 
 NOTES:
 • You specified the Pi side wire colors as:
@@ -57,38 +58,56 @@ NOTES:
 
 
 # 1. Create a virtual environment named .venv (or pick your own name)
-python3 -m venv .venv
 
+```
+python3 -m venv .venv
+```
 # 2. Activate the virtual environment
+
+```
 source .venv/bin/activate
+```
 
 # (Optional) Upgrade pip within the venv
+
+```
 pip install --upgrade pip
-
 sudo apt-get remove python3-rpi.gpio
-
 pip install RPi.GPIO
+```
 
 # 1. Clone the repo
+
+```
 git clone https://github.com/tatobari/hx711py.git
+```
 
 # 2. Enter the directory
+
+```
 cd hx711py
+```
 
 # 3. Install into your virtual environment
-#    This compiles & installs the library so you can "import hx711"
+
+This compiles & installs the library so you can "import hx711"
+
+```
 pip install .
 or
 python setup.py install
 cd ..
+```
 
 python scale.py
 
 ## Patch for old Pi's.
+
+```
 /usr/local/lib/python3.??/dist-packages/RPi/GPIO/__init__.py
 or
 /usr/lib/python3/dist-packages/RPi/GPIO/__init__.py
-
+```
 
 5. Patch the Old-Style Revision Code Check (If Needed)
 If you’re encountering the NotImplementedError: This module does not understand old-style revision codes with your Pi B+ (revision 0x10), locate the function that raises this error (often in something named _get_rpi_info() within certain forks of RPi.GPIO or a custom library file). You’ll see a check like:
@@ -102,6 +121,8 @@ Example Patch
 Remove or modify that check, and add a block to handle the old-style revision. For example:
 
 # Check if bit 23 is set: indicates new-style code
+
+```
 is_new_style = bool(revision >> 23 & 0x1)
 
 if not is_new_style:
@@ -115,11 +136,9 @@ if not is_new_style:
         'PROCESSOR': 'BCM2835',
         'RAM': '512M',
     }
-else:
-    # Proceed with the new-style revision logic
-    ...
+```
 
-
+```
 (1)   3.3V Power (3V3)        -> . . <-  5V Power          (2)
 (3)   GPIO2  (SDA1)           -> . . <-  5V Power          (4)
 (5)   GPIO3  (SCL1)           -> . . <-  GND               (6)
@@ -140,3 +159,4 @@ else:
 (35)  GPIO19                  -> . . <-  GPIO16            (36)
 (37)  GPIO26                  -> . . <-  GPIO20            (38)
 (39)  GND                     -> . . <-  GPIO21            (40)
+```

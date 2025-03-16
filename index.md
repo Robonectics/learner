@@ -2,7 +2,17 @@
 title: Robonectics Leaner Docs
 ---
 
-Check out the [Blog here for updates](/learner/2025/03/16/Welcome.html)
+Check out the Blog here for updates.
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+
+## Current Robonectics Projects
 
 - [Line Following Car](/projects/lfc/linefollowingcar.md)
 - [Boost My Bot](/projects/bmb/boostmybot.md)
