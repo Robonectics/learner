@@ -1,5 +1,5 @@
 ---
-title: Scales.
+title: Upscaling Scales.
 ---
 
 In this project we write some python code for a standard 4 wire scale.

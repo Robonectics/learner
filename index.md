@@ -4,9 +4,10 @@ title: Robonectics Leaner Docs
 
 Check out the [Blog here for updates](/learner/2025/03/16/Welcome.html)
 
-- [Line Following Car](https://example.com)
-- [Boost My Bot](https://example.com)
-- [UpScale](https://example.com)
+- [Line Following Car](/projects/lfc/linefollowingcar.md)
+- [Boost My Bot](/projects/bmb/boostmybot.md)
+- [UpScale](/projects/upscale/upscale.md)
+- [Conveyor](/projects/conveyor/conveyor.md)
 
 
 Cheat Sheets.
