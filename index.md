@@ -10,5 +10,4 @@ Check out the [Blog here for updates](https://robonectics.github.io/learner/_pos
 
 
 Cheat Sheets.
-- Raspberry Pi Pin Outs
-- https://pinout.xyz/
+- [Raspberry Pi Pin Outs](https://pinout.xyz/)
