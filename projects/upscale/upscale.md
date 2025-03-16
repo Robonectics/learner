@@ -57,18 +57,18 @@ NOTES:
 • After wiring, run your Python code with the HX711 library. Calibrate as needed.
 
 
-# 1. Create a virtual environment named .venv (or pick your own name)
+## 1. Create a virtual environment named .venv (or pick your own name)
 
 ```
 python3 -m venv .venv
 ```
-# 2. Activate the virtual environment
+## 2. Activate the virtual environment
 
 ```
 source .venv/bin/activate
 ```
 
-# (Optional) Upgrade pip within the venv
+## (Optional) Upgrade pip within the venv
 
 ```
 pip install --upgrade pip
@@ -76,19 +76,19 @@ sudo apt-get remove python3-rpi.gpio
 pip install RPi.GPIO
 ```
 
-# 1. Clone the repo
+## 1. Clone the repo
 
 ```
 git clone https://github.com/tatobari/hx711py.git
 ```
 
-# 2. Enter the directory
+## 2. Enter the directory
 
 ```
 cd hx711py
 ```
 
-# 3. Install into your virtual environment
+## 3. Install into your virtual environment
 
 This compiles & installs the library so you can "import hx711"
 
@@ -101,7 +101,7 @@ cd ..
 
 python scale.py
 
-## Patch for old Pi's.
+### Patch for old Pi's.
 
 ```
 /usr/local/lib/python3.??/dist-packages/RPi/GPIO/__init__.py
@@ -120,7 +120,7 @@ if not (revision >> 23 & 0x1):
 Example Patch
 Remove or modify that check, and add a block to handle the old-style revision. For example:
 
-# Check if bit 23 is set: indicates new-style code
+### Check if bit 23 is set: indicates new-style code
 
 ```
 is_new_style = bool(revision >> 23 & 0x1)
@@ -137,6 +137,10 @@ if not is_new_style:
         'RAM': '512M',
     }
 ```
+
+# Pi Pinout.
+
+The Pinout for the 40pin header is the same for all versions of Raspberry Pis.
 
 ```
 (1)   3.3V Power (3V3)        -> . . <-  5V Power          (2)
